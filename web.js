@@ -1,9 +1,14 @@
 var express = require('express');
 var app = express();
+
+app.configure(function() {
+  app.use(express.static(_dirname + '/'));
+});
+
 app.use(express.logger());
 
 app.get('/', function(request, response) {
-  response.send('Hello World!');
+  response.sendfile(_dirname + '/index.html');
 });
 
 var port = process.env.PORT || 8080;
